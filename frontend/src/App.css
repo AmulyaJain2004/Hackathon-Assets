@@ -1,0 +1,6 @@
+/* App-specific styles can be added here, but we'll primarily use Tailwind */
+.App {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
