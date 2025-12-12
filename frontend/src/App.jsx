@@ -1,37 +1,38 @@
-import { useState } from 'react'
-import './App.css'
-import Login from './pages/Login'
-import SignUp from './pages/SignUp'
-import Dashboard from './pages/Dashboard'
+import React from "react";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  Navigate,
+} from "react-router-dom";
+import { AuthProvider } from "./context/AuthContext";
+import ProtectedRoute from "./components/ProtectedRoute";
+import Signup from "./pages/Signup";
+import Login from "./pages/Login";
+import ForgotPassword from "./pages/ForgotPassword";
+import Dashboard from "./pages/Dashboard";
 
-function App() {
-  // Simple state-based routing for demo purposes
-  const [currentPage, setCurrentPage] = useState('login')
-  
-  // Handle navigation between pages
-  const navigateTo = (page) => {
-    setCurrentPage(page)
-  }
-
-  // Render the appropriate component based on currentPage
-  const renderPage = () => {
-    switch (currentPage) {
-      case 'login':
-        return <Login navigateTo={navigateTo} />
-      case 'signup':
-        return <SignUp navigateTo={navigateTo} />
-      case 'dashboard':
-        return <Dashboard navigateTo={navigateTo} />
-      default:
-        return <Login navigateTo={navigateTo} />
-    }
-  }
-
+const App = () => {
   return (
-    <div className="App">
-      {renderPage()}
-    </div>
-  )
-}
+    <Router>
+      <AuthProvider>
+        <Routes>
+          <Route path="/" element={<Navigate to="/login" replace />} />
+          <Route path="/signup" element={<Signup />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/forgot-password" element={<ForgotPassword />} />
+          <Route
+            path="/dashboard"
+            element={
+              <ProtectedRoute>
+                <Dashboard />
+              </ProtectedRoute>
+            }
+          />
+        </Routes>
+      </AuthProvider>
+    </Router>
+  );
+};
 
-export default App
+export default App;

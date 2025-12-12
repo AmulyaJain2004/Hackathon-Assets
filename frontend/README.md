@@ -1,89 +1,16 @@
-# Hackathon Hub Frontend
+# React + Vite
 
-A modern, responsive React application for hackathon event management built with React and Tailwind CSS.
+This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
-## Features
+Currently, two official plugins are available:
 
-- **User Authentication**: Login and signup pages with form validation
-- **Dashboard**: Overview of user's hackathon activities and statistics
-- **Responsive Design**: Mobile-first approach with responsive components
-- **Reusable Components**: Modular components for forms, buttons, and layouts
+- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
+- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
 
-## Tech Stack
+## React Compiler
 
-- React 
-- Tailwind CSS
-- Vite
+The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
 
-## Setup Instructions
+## Expanding the ESLint configuration
 
-### Prerequisites
-
-- Node.js (v18 or higher recommended)
-- npm or yarn
-
-### Installation
-
-1. Clone the repository
-   ```bash
-   git clone <your-repo-url>
-   cd hackathon-hub/frontend
-   ```
-
-2. Install dependencies
-   ```bash
-   npm install
-   # or with yarn
-   yarn
-   ```
-
-3. Install Tailwind CSS dependencies (if not already installed)
-   ```bash
-   npm install -D tailwindcss postcss autoprefixer
-   # or with yarn
-   yarn add -D tailwindcss postcss autoprefixer
-   ```
-
-### Development
-
-Run the development server:
-```bash
-npm run dev
-# or with yarn
-yarn dev
-```
-
-The application will be available at http://localhost:5173
-
-### Build for Production
-
-```bash
-npm run build
-# or with yarn
-yarn build
-```
-
-## Project Structure
-
-```
-src/
-├── components/
-│   ├── common/         # Reusable UI components
-│   │   ├── Button.jsx
-│   │   └── FormInput.jsx
-│   └── layout/         # Layout components
-│       ├── Navbar.jsx
-│       └── Footer.jsx
-├── pages/              # Page components
-│   ├── Login.jsx
-│   ├── SignUp.jsx
-│   └── Dashboard.jsx
-├── App.jsx             # Main application component
-├── main.jsx            # Entry point
-├── index.css           # Global styles (Tailwind imports)
-└── App.css             # App-specific styles
-```
-
-## License
-
-MIT
+If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.

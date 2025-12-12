@@ -1,15 +1,18 @@
 from django.contrib import admin
-from .models import Note
+from .models import UserProfile, OTPVerification
+
+# Register your models here.
+
+@admin.register(UserProfile)
+class UserProfileAdmin(admin.ModelAdmin):
+    list_display = ['user', 'phone', 'created_at', 'updated_at']
+    search_fields = ['user__username', 'user__email', 'phone']
+    list_filter = ['created_at']
 
 
-@admin.register(Note)
-class NoteAdmin(admin.ModelAdmin):
-    """Admin configuration for the Note model."""
-    list_display = ['title', 'owner', 'created_at', 'updated_at']
-    list_filter = ['created_at', 'updated_at', 'owner']
-    search_fields = ['title', 'content', 'owner__email']
-    readonly_fields = ['created_at', 'updated_at']
-    fieldsets = (
-        (None, {'fields': ('title', 'content', 'owner')}),
-        ('Timestamps', {'fields': ('created_at', 'updated_at')}),
-    ) 
+@admin.register(OTPVerification)
+class OTPVerificationAdmin(admin.ModelAdmin):
+    list_display = ['user', 'otp', 'purpose', 'is_used', 'created_at', 'expires_at']
+    search_fields = ['user__username', 'user__email', 'otp']
+    list_filter = ['purpose', 'is_used', 'created_at']
+    readonly_fields = ['created_at', 'expires_at']

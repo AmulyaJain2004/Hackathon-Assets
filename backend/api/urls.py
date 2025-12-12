@@ -1,43 +1,14 @@
-from django.urls import path, include
-from rest_framework.routers import DefaultRouter
-from rest_framework_simplejwt.views import (
-    TokenObtainPairView,
-    TokenRefreshView,
-    TokenVerifyView,
-)
-
-from api.views.auth_views import (
-    UserRegisterView,
-    UserProfileView,
-    ChangePasswordView,
-    PasswordResetRequestView,
-    PasswordResetConfirmView,
-)
-from api.views.note_views import NoteViewSet
-
-router = DefaultRouter()
-router.register(r'notes', NoteViewSet)
-
-# Auth URLs
-auth_urls = [
-    # JWT Token endpoints
-    path('token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
-    path('token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
-    path('token/verify/', TokenVerifyView.as_view(), name='token_verify'),
-    
-    # User management
-    path('register/', UserRegisterView.as_view(), name='register'),
-    path('profile/', UserProfileView.as_view(), name='profile'),
-    path('change-password/', ChangePasswordView.as_view(), name='change_password'),
-    path('password-reset/', PasswordResetRequestView.as_view(), name='password_reset'),
-    path('password-reset-confirm/<str:uid>/<str:token>/', 
-         PasswordResetConfirmView.as_view(), name='password_reset_confirm'),
-]
+from django.urls import path
+from . import views
 
 urlpatterns = [
-    # API endpoints
-    path('', include(router.urls)),
-    
-    # Auth endpoints
-    path('auth/', include(auth_urls)),
-] 
+    path('signup/', views.signup, name='signup'),
+    path('login/', views.login, name='login'),
+    path('logout/', views.logout, name='logout'),
+    path('user/', views.get_user, name='get_user'),
+    path('forgot-password/', views.forgot_password, name='forgot_password'),
+    path('verify-otp/', views.verify_otp, name='verify_otp'),
+    path('reset-password/', views.reset_password, name='reset_password'),
+    path('change-password/', views.change_password, name='change_password'),
+    path('dashboard/', views.dashboard, name='dashboard'),
+]
